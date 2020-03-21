@@ -16,7 +16,7 @@
           <el-input prefix-icon="el-icon-lock" placeholder="请输入密码" v-model="form.password"></el-input>
         </el-form-item>
         <!-- 使用栅格系统来添加内容 -->
-        <el-form-item  prop="loginCode">
+        <el-form-item prop="loginCode">
           <el-row>
             <el-col :span="16">
               <el-input prefix-icon="el-icon-key" placeholder="请输入验证码" v-model="form.loginCode"></el-input>
@@ -42,15 +42,18 @@
         </el-form-item>
         <el-form-item>
           <!-- 一个按钮放单独的表单域中 -->
-          <el-button class="loginBtn" type="primary">注册</el-button>
+          <el-button class="loginBtn" type="primary" @click="openregister">注册</el-button>
         </el-form-item>
       </el-form>
     </div>
     <img class="rightimg" src="../../assets/login_banner_ele.png" alt />
+    <register ref="register"/>
   </div>
 </template>
 
 <script>
+// 导入注册组件
+import register from "./components/register.vue";
 export default {
   data() {
     return {
@@ -62,12 +65,12 @@ export default {
         // 验证码
         loginCode: "",
         // 是否阅读
-        isCheck: [],
+        isCheck: []
         // /添加一个验证属性
       },
       rules: {
         phone: [
-          { required: true, message: "手机号不能为空", trigger: "blur" },
+          { required: true, message: "手机号不能为空", trigger: "blur" }
           // { min: 5, max: 10, message: "长度在 3 到 5 个字符", trigger: "blur" }
         ],
         password: [
@@ -78,13 +81,19 @@ export default {
           { required: true, message: "请输入验证码", trigger: "blur" },
           { min: 4, max: 4, message: "长度4个字符", trigger: "blur" }
         ],
-        isCheck:[
-          { type: 'array', required: true, message: '请勾选', trigger: 'change' }
+        isCheck: [
+          {
+            type: "array",
+            required: true,
+            message: "请勾选",
+            trigger: "change"
+          }
         ]
       }
     };
   },
   methods: {
+    // 点击登录按钮时触发
     onSubmit() {
       this.$refs.form.validate(valid => {
         if (valid) {
@@ -96,7 +105,16 @@ export default {
           // return false;
         }
       });
+    },
+    // 打开注册面板
+    openregister() {
+      // 使用$refs 传参的方式将注册组件中的属性进行修改
+      this.$refs.register.dialogFormVisible = true
     }
+  },
+  // 注册组件
+  components: {
+    register
   }
 };
 </script>
