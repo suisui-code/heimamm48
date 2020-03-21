@@ -9,7 +9,8 @@ import router from "./router";
 import Element from 'element-ui'
 // 导入 elementui样式(可以官网复制粘贴)
 import 'element-ui/lib/theme-chalk/index.css';
-
+// 导入全局样式
+import './style/index.css'
 // 使用element
 Vue.use(Element)
 Vue.config.productionTip = false;

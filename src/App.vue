@@ -1,6 +1,7 @@
 <template>
-  <div>
-    <router-link to="/">我是router-link</router-link>
+  <div class="app">
+    <!-- 添加一个视觉容器 -->
+    <router-view></router-view>
   </div>
 </template>
 
